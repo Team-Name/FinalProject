@@ -1,6 +1,6 @@
 class Card {
   //variables: picture
-  //methods: display,  
+  //methods: display, 
 }
 
 class SuspectCard extends Card {
