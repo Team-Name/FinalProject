@@ -1,4 +1,4 @@
-boolean run;
+boolean run, inst;
 Start st;
 void setup() {
   size(500, 500);
@@ -7,19 +7,25 @@ void setup() {
   st=new Start();
   textAlign(CENTER, CENTER);
   rectMode(CENTER);
-  colorMode(HSB);
+  colorMode(HSB,360,100,100);
 }
 void draw() {
   if (run) {
-
     background(0);
   }
   else {
-      st.display();
+    if(inst){
+     st.showRules(); 
+    }
+    else{
+    st.display();
+    }
   }
 }
 void mousePressed() {
-  st.changeRun(); 
-  st.rules();
+  if (!run) {
+    st.changeRun(); 
+    st.rules();
+  }
 }
 
