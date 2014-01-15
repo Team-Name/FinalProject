@@ -1,33 +1,95 @@
 class Player {
   PVector loc;
-  boolean moving;
   int movesLeft;
+  Card[] cards;
 
-  Player() {
-    //loc =
-    moving = false;
+  Player(starting spot, myCards) {
+    loc = starting spot;
+    movesLeft = 0;
+    cards = myCards;
   }
 
   void display() {
+    display sprite at loc;
   }
 
-  void move() {
-    if (!moving) {
+  //0 = up, 1 = right, 2 = down, 3 = left
+  void move(int _direction) {
+    if (movesLeft == 0) {
       movesLeft = int(random(1, 7)) + int(random(1, 7));
       moving = true;
       display movesLeft;
     }
     else {
       display roll;
-      if board (
+      if (board.canMove(direction)) {
+        change loc;
+        moveLeft--;
+      }
     }
   }
-  //methods: display, move, roll, suggest, accuse
-  //variables: position
+
+  ArrayList<Card> suggest(Cards[3] suggestion) {
+    ArrayList<Card> reveal = new ArrayList<Card>();
+    Card c;
+    for (ComputerPlayer cplayer : cplayers) {
+      c = cplayer.checkCards(suggesion);
+      if (c != null) {
+        reveal.add(c);
+      }
+    }
+    return reveal;
+  }
+
+  Card checkCards(Card[3] suggestion) {
+    for (Card x : suggestion) {
+      for (Card y : cards) {
+        if (x.checkEqual(y) == true) {
+          return y;
+        }
+      }
+    }
+    return null;
+  }
 }
 
 class ComputerPlayer extends Player {
-  //same except make everything automatic and random, and a notesheet to determine suggestions and accusations 
-  Notesheet note;
+  CPUBrain brain;
+  int index = num in array; 
+  
+  ComputerPlayer(starting spot, myCards, int myIndex) {
+    super(spot, myCards);
+    index = myIndex;
+  }
+  
+  //WORK ON THIS
+  void move (int _direction) {
+    if (movesLeft == 0) {
+      movesLeft = int(random(1, 7)) + int(random(1, 7));
+      moving = true;
+      display movesLeft;
+    }
+    else {
+      display roll;
+      direction given by cpubrain;
+      if (board.canMove(direction)) {
+        change loc;
+        moveLeft--;
+      }
+    }
+    //check cards with player
+    
+    //check cards with other computers
+    for (ComputerPlayer cplayer : cplayers) {
+      c = cplayer.checkCards(suggesion);
+      if (c != null) {
+        reveal.add(c);
+      }
+    }
+    return reveal;
+  }
+  
+  
 }
 
+//brain determines where to move too
