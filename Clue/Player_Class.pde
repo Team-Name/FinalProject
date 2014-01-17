@@ -3,7 +3,7 @@ class Player {
   int movesLeft;
   Card[] cards;
 
-  Player(starting spot, myCards) {
+  void reset(starting spot, myCards) {
     loc = starting spot;
     movesLeft = 0;
     cards = myCards;
@@ -57,8 +57,8 @@ class ComputerPlayer extends Player {
   CPUBrain brain;
   int index = num in array; 
   
-  ComputerPlayer(starting spot, myCards, int myIndex) {
-    super(spot, myCards);
+  void reset(starting spot, myCards, int myIndex) {
+    super.reset(spot, myCards);
     index = myIndex;
   }
   

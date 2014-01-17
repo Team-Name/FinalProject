@@ -29,10 +29,10 @@ class Start {
     text("INSTRUCTIONS", s2.x, s2.y);
   }
   //runs the game
-  void changeRun() {
-    //if the mouse is within the rectangle, the run boolean changes to true
+  void changeStage() {
+    //if the mouse is within the rectangle, the stage int increase to start game
     if (mouseX<s1.x+(l/2)&&mouseX>s1.x-(l/2)&&mouseY<s1.y+(w/2)&&mouseY>s1.y-(w/2)) {
-      run=true;
+      stage=1;
     }
   }
   void rules() {
