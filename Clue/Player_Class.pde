@@ -62,7 +62,7 @@ class ComputerPlayer extends Player {
     index = myIndex;
   }
   
-  //WORK ON THIS
+  //FIX THIS
   void move (int _direction) {
     if (movesLeft == 0) {
       movesLeft = int(random(1, 7)) + int(random(1, 7));
@@ -74,7 +74,7 @@ class ComputerPlayer extends Player {
       direction given by cpubrain;
       if (board.canMove(direction)) {
         change loc;
-        moveLeft--;
+        movesLeft--;
       }
     }
     //check cards with player
