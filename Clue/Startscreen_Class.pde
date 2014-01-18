@@ -9,7 +9,7 @@ class Start {
     s1=new PVector(width/2, 3*height/4);
     s2=new PVector(width/2, 7*height/8);
     s3=new PVector(width/2, height/32);
-    s4=new PVector(width/2,height*.71);
+    s4=new PVector(width/2, height*.71);
     logo=loadImage("clue logo.jpg");
     l=200;
     w=50;
@@ -44,17 +44,17 @@ class Start {
     }
   }
   void showRules() {
-    background(360,100,0);
-    fill(360,0,100);
+    background(360, 100, 0);
+    fill(360, 0, 100);
     textSize(15);
     text("RULES:\nScroll up and down using the arrow keys. \nAt the beginning of the game, the player receives 5 digital cards. \nEach card will have a picture of one of the following: a suspect, \na room, or a weapon. One of each of those types of cards has been \npreviously set aside as the murderer, the crime scene, and the \nweapon used. The player will have a digital notesheet where he or \nshe can eliminate suspects, weapons, and rooms. Each turn, the \nplayer will roll two dice and move the specified number of spots \nusing the arrow keys. The player cannot occupy or move through \na space occupied by another player. If the player goes into a room, \nhe or she can make a suggestion. Alternatively, if someone is in a \nroom with a portal, he or she can choose to not roll and immediately \njump into the connected room and make a suggestion. When \nsuggesting, the player will pick one suspect, one room, and one \nweapon. The next player will try to disprove that suggestion. If that \nplayer has proof that the suggestion was wrong, they will show one \ncard to disprove the suggestion to only the player that made the \nsuggestion. If they cannot disprove it, the next player will try. \nAfter a suggestion, the player can mark what they learned on their \nnotesheet. After a suggestion or if the player cannot make it into a \nroom with the number he or she rolled, the turn is over. When a \nplayer is ready to definitively identify the murderer, crime scene, \nand weapon, he or she must go to The Office to accuse. Only one \naccusation can be made per game. The player will make their \naccusation, and if they are correct, they will win the game. If the \naccusation is wrong, they lose.", s4.x, s4.y);
-    if(keyPressed){
-     if(keyCode==DOWN){
-      s4.y-=10;
-     } 
-        if(keyCode==UP){
-      s4.y+=10;
-     }
+    if (keyPressed) {
+      if (keyCode==DOWN) {
+        s4.y-=10;
+      } 
+      if (keyCode==UP) {
+        s4.y+=10;
+      }
     }
     rect(s3.x, s3.y, width, height/16);
     fill(0);

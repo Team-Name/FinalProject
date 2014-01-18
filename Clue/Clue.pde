@@ -1,9 +1,10 @@
 int stage;
 Start st;
-boolean inst;
+boolean inst, turn, won;
 CardPile c;
 Card[] murder;
-Player() p;
+Board b;
+Player p;
 ComputerPlayer[] cp;
 int turn;
 
@@ -13,9 +14,11 @@ void setup() {
   textAlign(CENTER, CENTER);
   rectMode(CENTER);
   colorMode(HSB, 360, 100, 100);
-  st=new Start();
-  inst = false; //do we need this?
+  st = new Start();
+  inst = false;
   stage = 0;
+  won = false;
+  turn = true;
 }
 
 void draw() {
@@ -28,14 +31,43 @@ void draw() {
     }
   }
   else if (stage == 1) { //choosing a teacher to play with
-    //screen to choose a teacher
-    //give the name and sprite to the player p (initialize p)
-    //increase stage and start game (figure out murder cards, distribute cards, etc)
+    //display screen to choose character
+
+    if (/*pick place to choose player*/) {
+      //initialize variables (give players characters)
+      //random choose three of the remaining teachers and assign players
+      //assign murder cards
+      //give players cards
+      //pick starting location for each player
+      murder = new Card[3];
+      cp = new ComputerPlayer[3];
+      for (ComputerPlayer i : cp) {
+        i = new ComputerPlayer();
+      }
+      c = new CardPile();
+      murder = c.getMurder;
+      Card nextCard = c.getRandomCard();
+      if (nextCard != null) {
+        //give to computer player in turn order
+      }
+      stage++;
+    }
   }
   else if (stage == 2) { //actual game
-    
+    //display the picture of the board and sidebar and teacher pieces on board
+    //display notesheet and clicking in certain spots to put x's there
+
+    if (turn) {
+      p.move();
+    }
+    //computer players move (need a timer otherwise this would be too fast)
+    else {
+      for (ComputerPlayer i : cp) {
+        i.move();
+      }
+    }
   }
-  else {
+  else { //end game
   }
 }
 
@@ -46,17 +78,12 @@ void mousePressed() {
   }
 }
 
-void startGame() { //things that can be done after player chooses teacher
-  murder = new Card[3];
-  cp = new ComputerPlayer[3];
-  for (ComputerPlayer i : cp) {
-    i = new ComputerPlayer();
-  }
-  c = new CardPile();
-  murder = c.getMurder;
-  Card nextCard = c.getRandomCard();
-  if (nextCard != null) {
-    //give to computer player in turn order
-  }
-}
+//to put somewhere
+//pictures for sprites
+
+//to implement later: restart, music
+
+
+
+
 

@@ -2,6 +2,7 @@ class CardPile {
   ArrayList<Card> cards;
 
   CardPile() {
+    cards = new ArrayList<Card>();
     setUpCardPile();
   }
 
