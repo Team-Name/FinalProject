@@ -18,7 +18,6 @@ void setup() {
   inst = false;
   stage = 0;
   won = false;
-  turn = true;
 }
 
 void draw() {
@@ -38,7 +37,7 @@ void draw() {
       //random choose three of the remaining teachers and assign players
       //assign murder cards
       //give players cards
-      //pick starting location for each player
+      //pick starting location for each player (person starts at bottom, player 1 is left, player 2, is top, player 3 is right)
       murder = new Card[3];
       cp = new ComputerPlayer[3];
       for (ComputerPlayer i : cp) {
@@ -68,6 +67,7 @@ void draw() {
     }
   }
   else { //end game
+    //also display correcct murder cards and the winner (if someone accused right)
   }
 }
 
