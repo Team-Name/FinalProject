@@ -7,13 +7,18 @@ Board b;
 Player p;
 ComputerPlayer[] cp;
 int turn;
-
+int gers, sans, kipp, mosk, monr, vall=0;
+int id, whir, deaf, blin, expl, nullW, supe, answ=0;
+int audi, fitn, mmc, newR, seni, vallR, pint, pant, fres=0;
+PFont font;
 void setup() {
   //settings
   size(500, 500);
   textAlign(CENTER, CENTER);
   rectMode(CENTER);
   colorMode(HSB, 360, 100, 100);
+  font=loadFont("AmericanTypewriter-20.vlw");
+  textFont(font);
   st = new Start();
   inst = false;
   stage = 0;
@@ -55,7 +60,7 @@ void draw() {
   else if (stage == 2) { //actual game
     //display the picture of the board and sidebar and teacher pieces on board
     //display notesheet and clicking in certain spots to put x's there
-
+notesheet()
     if (turn) {
       p.move();
     }
