@@ -7,46 +7,14 @@ class CardPile {
   }
 
   Card[] getMurder() {
-    boolean taken0,taken1,taken2;
-    taken0=false;
-    taken1=false;
-    taken2=false;
-    void select(){
-      int i= int(random(cards.size()-1));
-      Card c = cards.get(i);
-    if(c.type==0){
-     if(!taken0){
-      cards.remove(i);
-      taken0=true;
-     } 
-    }
-    if(c.type==1){
-     if(!taken1){
-      cards.remove(i);
-      taken1=true;
-     } 
-    }
-    if(c.type==2){
-     if(!taken2){
-      cards.remove(i);
-      taken2=true;
-     } 
-    }
-    }
-    if(!taken0||!taken1||!taken2){
-     select(); 
-    }
+    //get the three cards
+    //remove them from cards
   }
 
   Card getRandomCard() {
-    if(cards.size>0){
-     Card c = cards.get(random(cards.size()-1);
-    cards.remove(c);
-    return c;
-    }
-    else{
-     return null; 
-    }
+    //get one random one from cards
+    //remove it
+    //if none left, return null
   }
 
   void setUpCardPile() {
