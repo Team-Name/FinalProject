@@ -67,7 +67,7 @@ void draw() {
     }
   }
   else { //end game
-    //also display correcct murder cards and the winner (if someone accused right)
+    //also display correct murder cards and the winner (if someone accused right)
   }
 }
 
@@ -82,7 +82,6 @@ void mousePressed() {
 //pictures for sprites
 
 //to implement later: restart, music
-
 
 
 
