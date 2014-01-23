@@ -1,3 +1,6 @@
+import ddf.minim.*;
+Minim minim;
+AudioPlayer music;
 int stage;
 Start st;
 boolean inst, turn, won;
@@ -18,6 +21,10 @@ void setup() {
   textAlign(CENTER, CENTER);
   rectMode(CENTER);
   colorMode(HSB, 360, 100, 100);
+  minim = new Minim(this);
+  music = minim.loadFile("battlemusic.mp3");
+  music.play();
+  music.loop();
   font=loadFont("AmericanTypewriter-20.vlw");
   textFont(font);
   st = new Start();
