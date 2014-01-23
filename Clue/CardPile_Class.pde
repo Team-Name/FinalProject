@@ -11,37 +11,34 @@ class CardPile {
     taken0=false;
     taken1=false;
     taken2=false;
-    void select() {
-      int i= int(random(cards.size()-1));
+    Card[] murder = new Card[3];
+    while (!taken0||!taken1||!taken2) {
+      int i = int(random(cards.size()-1));
       Card c = cards.get(i);
-      if (c.type==0) {
-        if (!taken0) {
-          cards.remove(i);
-          taken0=true;
-        }
+      if (c.type==0 && !taken0) {
+        cards.remove(i);
+        murder[0] = c;
+        taken0=true;
       }
-      if (c.type==1) {
-        if (!taken1) {
-          cards.remove(i);
-          taken1=true;
-        }
+      if (c.type==1 && !taken1) {
+        cards.remove(i);
+        murder[1] = c;
+        taken1=true;
       }
-      if (c.type==2) {
-        if (!taken2) {
-          cards.remove(i);
-          taken2=true;
-        }
+      if (c.type==2 && !taken2) {
+        cards.remove(i);
+        murder[2] = c;
+        taken2=true;
       }
     }
-    if (!taken0||!taken1||!taken2) {
-      select();
-    }
+    return murder;
   }
 
   Card getRandomCard() {
     if (cards.size>0) {
-      Card c = cards.get(random(cards.size()-1);
-      cards.remove(c);
+      int i = int(random(cards.size()-1));
+      Card c = cards.get(i);
+      cards.remove(i);
       return c;
     }
     else {

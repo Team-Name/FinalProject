@@ -43,40 +43,50 @@ void draw() {
     }
   }
   else if (stage == 1) { //choosing a teacher to play with
+    String teacher;
     //display screen to choose character
 
-    if (/*pick place to choose player*/) {
+      if (/*chose character*/) {
+      c = new CardPile();
+      murder = new Card[3];
+      murder = c.getMurder;
+      Card[5][4] playerCards = new Card[5][4];
+      int i = 0;
+      int j = 0;
+      Card nextCard = c.getRandomCard();
+      while (nextCard != null) {
+        playerCards[i][j] = nextCard;
+        j++;
+        if (j == 4) {
+          j = 0;
+          i++;
+        }
+      }
       //initialize variables (give players characters)
       //random choose three of the remaining teachers and assign players
-      //assign murder cards
       //give players cards
       //pick starting location for each player (person starts at bottom, player 1 is left, player 2, is top, player 3 is right)
-      murder = new Card[3];
+      p = new Player(); 
       cp = new ComputerPlayer[3];
       for (ComputerPlayer i : cp) {
         i = new ComputerPlayer();
       }
-      c = new CardPile();
-      murder = c.getMurder;
-      Card nextCard = c.getRandomCard();
-      if (nextCard != null) {
-        //give to computer player in turn order
-      }
+
       stage++;
     }
   }
   else if (stage == 2) { //actual game
     //display the picture of the board and sidebar and teacher pieces on board
     notesheet()
-    if (turn) {
-      p.move();
-    }
-    //computer players move (need a timer otherwise this would be too fast)
-    else {
-      for (ComputerPlayer i : cp) {
-        i.move();
+      if (turn) {
+        p.move();
       }
-    }
+    //computer players move (need a timer otherwise this would be too fast)
+      else {
+        for (ComputerPlayer i : cp) {
+          i.move();
+        }
+      }
   }
   else { //end game
     //also display correct murder cards and the winner (if someone accused right)
@@ -94,6 +104,4 @@ void mousePressed() {
 //pictures for sprites
 
 //to implement later: restart, music
-
-
 

@@ -5,13 +5,15 @@ class Player {
   PImage picture;
   Card[] cards;
   boolean turn;
+  String teacher;
 
-  Player(PVector startLoc, Card[] myCards, PImage myPicture) {
+  Player(PVector startLoc, Card[] myCards, String myTeacher) {
     loc = startLoc;
     movesLeft = 0;
-    picture = myPicture;
+    teacher = myTeacher;
     cards = myCards;
     turn = false;
+    //initialize image according to teacher
   }
 
   void display() {
@@ -124,7 +126,7 @@ class ComputerPlayer extends Player {
   Card[] possibleCards;
   int index; 
 
-  ComputerPlayer(PVector startLoc, Card[] myCards, PImage myPicture, int myIndex) {
+  ComputerPlayer(PVector startLoc, Card[] myCards, String myTeacher, int myIndex) {
     super(startLoc, myCards, myPicture);
     index = myIndex;
     setUpCardArray(Card[] possibleCards);
