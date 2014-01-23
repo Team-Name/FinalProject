@@ -1,10 +1,12 @@
 import ddf.minim.*;
+
 Minim minim;
 AudioPlayer music;
 int stage;
 Start st;
 boolean inst, turn, won;
 CardPile c;
+Card[] allCards;
 Card[] murder;
 Board b;
 Player p;
@@ -14,6 +16,7 @@ int gers, sans, kipp, mosk, monr, vall=0;
 int id, whir, deaf, blin, expl, nullW, supe, answ=0;
 int audi, fitn, mmc, newR, seni, vallR, pint, pant, fres=0;
 PFont font;
+
 
 void setup() {
   //settings
@@ -31,6 +34,7 @@ void setup() {
   inst = false;
   stage = 0;
   won = false;
+  c.setUpCardArray(allCards);
 }
 
 void draw() {
@@ -43,10 +47,11 @@ void draw() {
     }
   }
   else if (stage == 1) { //choosing a teacher to play with
-    String teacher;
+    ArrayList<String> teachers = new ArrayList<String>();
     //display screen to choose character
+    //add what teacher player chooses and add it to computerTeachers
 
-      if (/*chose character*/) {
+    if (/*chose character*/) {
       c = new CardPile();
       murder = new Card[3];
       murder = c.getMurder;
@@ -62,16 +67,28 @@ void draw() {
           i++;
         }
       }
-      //initialize variables (give players characters)
-      //random choose three of the remaining teachers and assign players
-      //give players cards
-      //pick starting location for each player (person starts at bottom, player 1 is left, player 2, is top, player 3 is right)
-      p = new Player(); 
-      cp = new ComputerPlayer[3];
-      for (ComputerPlayer i : cp) {
-        i = new ComputerPlayer();
-      }
 
+      //pick starting location for each player (person starts at bottom, player 1 is left, player 2, is top, player 3 is right)
+      p = new Player(/*starting location*/, playerCards[0], teachers[0]);
+      cp = new ComputerPlayer[3];
+      while (true) {
+        String nextT = cardArray[0].get(int(random(cardArray[0].size()))).detail;
+        boolean inArray = false;
+        for (String t : teachers) {
+          if (t.equals(nextT)) {
+            inArray = true;
+          }
+        }
+        if (inArray) {
+          teachers.add(nextT);
+        }
+        if (teachers.size () == 4) {
+          break;
+        }
+      } 
+      cp[0] = new ComputerPlayer(/*starting location*/, playerCards[1], teachers.get(1), 0);
+      cp[1] = new ComputerPlayer(/*starting location*/, playerCards[2], teachers.get(2), 1);
+      cp[2] = new ComputerPlayer(/*starting location*/, playerCards[3], teachers.get(3), 2);
       stage++;
     }
   }
@@ -90,6 +107,7 @@ void draw() {
   }
   else { //end game
     //also display correct murder cards and the winner (if someone accused right)
+    //restart
   }
 }
 
@@ -99,9 +117,3 @@ void mousePressed() {
     st.rules();
   }
 }
-
-//to put somewhere
-//pictures for sprites
-
-//to implement later: restart, music
-
