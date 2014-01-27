@@ -208,7 +208,7 @@ class ComputerPlayer extends Player {
         }
         if (b.inRoom(loc) != null && !b.inRoom(loc).equals(lastRoom)) {
           Card[] suggestion = getSuggestion();
-          suggestion[1] = b.inRoom(loc);
+          suggestion[1] = new Card(1, b.inRoom(loc));
           sawCard(reveal(suggestion)); 
           movesLeft = 0;
         }
