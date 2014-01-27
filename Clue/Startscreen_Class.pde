@@ -9,7 +9,7 @@ class Start {
     s1=new PVector(width/2, 3*height/4);
     s2=new PVector(width/2, 7*height/8);
     s3=new PVector(width/2, height/32);
-    s4=new PVector(width/2, height*.71);
+    s4=new PVector(width/2, height*.5);
     logo=loadImage("clue logo.jpg");
     l=200;
     w=50;
@@ -18,13 +18,14 @@ class Start {
   void display() {
     background(0);
     imageMode(CENTER);
+    textAlign(CENTER, CENTER);
     image(logo, width/2, height/3, width/2, height/2);
     fill(120, 0, 100);
     rect(s1.x, s1.y, l, w);
     rect(s2.x, s2.y, 2*l/3, w/2);
     fill(0);
     textSize(50);
-    text("START", s1.x, s1.y);
+    text("START", s1.x, s1.y-2);
     textSize(15);
     text("INSTRUCTIONS", s2.x, s2.y);
   }

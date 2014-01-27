@@ -1,8 +1,11 @@
 void notesheet() {
+  textAlign(CENTER, CENTER);
+  colorMode(RGB, 255, 255, 255);
+  rectMode(CORNER);
   fill(255); 
   stroke(255);
   noStroke();
-  rect(3*width/4, 0, width, height);
+  rect(666, 0, width, height);
   if (gers==0) {
     fill(255); 
     stroke(255);
@@ -15,7 +18,7 @@ void notesheet() {
     fill(40, 215, 40);
     stroke(40, 215, 40);
   }
-  rect(3*width/4, 1*height/26, width, height/26);
+  rect(666, 1*height/26, width, height/26);
   if (sans==0) {
     fill(255); 
     stroke(255);
@@ -28,7 +31,7 @@ void notesheet() {
     fill(40, 215, 40);
     stroke(40, 215, 40);
   }
-  rect(3*width/4, 2*height/26, width, height/26);
+  rect(666, 2*height/26, width, height/26);
   if (kipp==0) {
     fill(255); 
     stroke(255);
@@ -41,7 +44,7 @@ void notesheet() {
     fill(40, 215, 40); 
     stroke(40, 215, 40);
   }
-  rect(3*width/4, 3*height/26, width, height/26);
+  rect(666, 3*height/26, width, height/26);
   if (mosk==0) {
     fill(255); 
     stroke(255);
@@ -54,7 +57,7 @@ void notesheet() {
     fill(40, 215, 40); 
     stroke(40, 215, 40);
   }
-  rect(3*width/4, 4*height/26, width, height/26);
+  rect(666, 4*height/26, width, height/26);
   if (monr==0) {
     fill(255); 
     stroke(255);
@@ -67,7 +70,7 @@ void notesheet() {
     fill(40, 215, 40); 
     stroke(40, 215, 40);
   }
-  rect(3*width/4, 5*height/26, width, height/26);
+  rect(666, 5*height/26, width, height/26);
   if (vall==0) {
     fill(255); 
     stroke(255);
@@ -80,7 +83,7 @@ void notesheet() {
     fill(40, 215, 40); 
     stroke(40, 215, 40);
   }
-  rect(3*width/4, 6*height/26, width, height/26);
+  rect(666, 6*height/26, width, height/26);
   if (id==0) {
     fill(255); 
     stroke(255);
@@ -93,7 +96,7 @@ void notesheet() {
     fill(40, 215, 40); 
     stroke(40, 215, 40);
   }
-  rect(3*width/4, 8*height/26, width, height/26);
+  rect(666, 8*height/26, width, height/26);
   if (whir==0) {
     fill(255); 
     stroke(255);
@@ -106,7 +109,7 @@ void notesheet() {
     fill(40, 215, 40); 
     stroke(40, 215, 40);
   }
-  rect(3*width/4, 9*height/26, width, height/26);
+  rect(666, 9*height/26, width, height/26);
   if (deaf==0) {
     fill(255); 
     stroke(255);
@@ -119,7 +122,7 @@ void notesheet() {
     fill(40, 215, 40); 
     stroke(40, 215, 40);
   }
-  rect(3*width/4, 10*height/26, width, height/26);
+  rect(666, 10*height/26, width, height/26);
   if (blin==0) {
     fill(255); 
     stroke(255);
@@ -132,7 +135,7 @@ void notesheet() {
     fill(40, 215, 40); 
     stroke(40, 215, 40);
   }
-  rect(3*width/4, 11*height/26, width, height/26);
+  rect(666, 11*height/26, width, height/26);
   if (expl==0) {
     fill(255); 
     stroke(255);
@@ -145,7 +148,7 @@ void notesheet() {
     fill(40, 215, 40); 
     stroke(40, 215, 40);
   }
-  rect(3*width/4, 12*height/26, width, height/26);
+  rect(666, 12*height/26, width, height/26);
   if (nullW==0) {
     fill(255); 
     stroke(255);
@@ -158,7 +161,7 @@ void notesheet() {
     fill(40, 215, 40); 
     stroke(40, 215, 40);
   }
-  rect(3*width/4, 13*height/26, width, height/26);
+  rect(666, 13*height/26, width, height/26);
   if (supe==0) {
     fill(255); 
     stroke(255);
@@ -171,7 +174,7 @@ void notesheet() {
     fill(40, 215, 40); 
     stroke(40, 215, 40);
   }
-  rect(3*width/4, 14*height/26, width, height/26);
+  rect(666, 14*height/26, width, height/26);
   if (answ==0) {
     fill(255); 
     stroke(255);
@@ -184,7 +187,7 @@ void notesheet() {
     fill(40, 215, 40); 
     stroke(40, 215, 40);
   }
-  rect(3*width/4, 15*height/26, width, height/26);
+  rect(666, 15*height/26, width, height/26);
   if (audi==0) {
     fill(255); 
     stroke(255);
@@ -197,7 +200,7 @@ void notesheet() {
     fill(40, 215, 40); 
     stroke(40, 215, 40);
   }
-  rect(3*width/4, 17*height/26, width, height/26);
+  rect(666, 17*height/26, width, height/26);
   if (fitn==0) {
     fill(255); 
     stroke(255);
@@ -210,7 +213,7 @@ void notesheet() {
     fill(40, 215, 40); 
     stroke(40, 215, 40);
   }
-  rect(3*width/4, 18*height/26, width, height/26);
+  rect(666, 18*height/26, width, height/26);
   if (mmc==0) {
     fill(255); 
     stroke(255);
@@ -223,7 +226,7 @@ void notesheet() {
     fill(40, 215, 40); 
     stroke(40, 215, 40);
   }
-  rect(3*width/4, 19*height/26, width, height/26);
+  rect(666, 19*height/26, width, height/26);
   if (newR==0) {
     fill(255); 
     stroke(255);
@@ -236,7 +239,7 @@ void notesheet() {
     fill(40, 215, 40); 
     stroke(40, 215, 40);
   }
-  rect(3*width/4, 20*height/26, width, height/26);
+  rect(666, 20*height/26, width, height/26);
   if (seni==0) {
     fill(255); 
     stroke(255);
@@ -249,7 +252,7 @@ void notesheet() {
     fill(40, 215, 40); 
     stroke(40, 215, 40);
   }
-  rect(3*width/4, 21*height/26, width, height/26);
+  rect(666, 21*height/26, width, height/26);
   if (vallR==0) {
     fill(255); 
     stroke(255);
@@ -262,7 +265,7 @@ void notesheet() {
     fill(40, 215, 40); 
     stroke(40, 215, 40);
   }
-  rect(3*width/4, 22*height/26, width, height/26);
+  rect(666, 22*height/26, width, height/26);
   if (pint==0) {
     fill(255); 
     stroke(255);
@@ -275,7 +278,7 @@ void notesheet() {
     fill(40, 215, 40); 
     stroke(40, 215, 40);
   }
-  rect(3*width/4, 23*height/26, width, height/26);
+  rect(666, 23*height/26, width, height/26);
   if (pant==0) {
     fill(255); 
     stroke(255);
@@ -288,7 +291,7 @@ void notesheet() {
     fill(40, 215, 40); 
     stroke(40, 215, 40);
   }
-  rect(3*width/4, 24*height/26, width, height/26);
+  rect(666, 24*height/26, width, height/26);
   if (fres==0) {
     fill(255); 
     stroke(255);
@@ -301,12 +304,12 @@ void notesheet() {
     fill(40, 215, 40); 
     stroke(40, 215, 40);
   }
-  rect(3*width/4, 25*height/26, width, height/26);
+  rect(666, 25*height/26, width, height/26);
   fill(0); 
   stroke(0);
-  rect(3*width/4, 0, width, height/26);
-  rect(3*width/4, 7*height/26, width, height/26);
-  rect(3*width/4, 16*height/26, width, height/26);
+  rect(666, 0, width, height/26);
+  rect(666, 7*height/26, width, height/26);
+  rect(666, 16*height/26, width, height/26);
   fill(255);
   textSize(20);
   text("Murderer", 7*width/8, height/52);
@@ -338,147 +341,4 @@ void notesheet() {
   text("Mr. Pantaleo's Room", 7*width/8, 49*height/52);
   text("Freshman Tech Room", 7*width/8, 51*height/52);
 }
-void mousePressed() {
-  if (stage==2) {
-    if (mouseX>=width*3/4) {
-      if (mouseY>height*1/26 &&mouseY<height*2/26) {
-        gers++;
-        if (gers==3) {
-          gers=0;
-        }
-      }
-      if (mouseY>height*2/26 &&mouseY<height*3/26) {
-        sans++;
-        if (sans==3) {
-          sans=0;
-        }
-      }
-      if (mouseY>height*3/26 &&mouseY<height*4/26) {
-        kipp++;
-        if (kipp==3) {
-          kipp=0;
-        }
-      }
-      if (mouseY>height*4/26 &&mouseY<height*5/26) {
-        mosk++;
-        if (mosk==3) {
-          mosk=0;
-        }
-      }
-      if (mouseY>height*5/26 &&mouseY<height*6/26) {
-        monr++;
-        if (monr==3) {
-          monr=0;
-        }
-      }
-      if (mouseY>height*6/26 &&mouseY<height*7/26) {
-        vall++;
-        if (vall==3) {
-          vall=0;
-        }
-      }
-      if (mouseY>height*8/26 &&mouseY<height*9/26) {
-        id++;
-        if (id==3) {
-          id=0;
-        }
-      }
-      if (mouseY>height*9/26 &&mouseY<height*10/26) {
-        whir++;
-        if (whir==3) {
-          whir=0;
-        }
-      }
-      if (mouseY>height*10/26 &&mouseY<height*11/26) {
-        deaf++;
-        if (deaf==3) {
-          deaf=0;
-        }
-      }
-      if (mouseY>height*11/26 &&mouseY<height*12/26) {
-        blin++;
-        if (blin==3) {
-          blin=0;
-        }
-      }
-      if (mouseY>height*12/26 &&mouseY<height*13/26) {
-        expl++;
-        if (expl==3) {
-          expl=0;
-        }
-      }
-      if (mouseY>height*13/26 &&mouseY<height*14/26) {
-        nullW++;
-        if (nullW==3) {
-          nullW=0;
-        }
-      }
-      if (mouseY>height*14/26 &&mouseY<height*15/26) {
-        supe++;
-        if (supe==3) {
-          supe=0;
-        }
-      }
-      if (mouseY>height*15/26 &&mouseY<height*16/26) {
-        answ++;
-        if (answ==3) {
-          answ=0;
-        }
-      }
-      if (mouseY>height*17/26 &&mouseY<height*18/26) {
-        audi++;
-        if (audi==3) {
-          audi=0;
-        }
-      }
-      if (mouseY>height*18/26 &&mouseY<height*19/26) {
-        fitn++;
-        if (fitn==3) {
-          fitn=0;
-        }
-      }
-      if (mouseY>height*19/26 &&mouseY<height*20/26) {
-        mmc++;
-        if (mmc==3) {
-          mmc=0;
-        }
-      }
-      if (mouseY>height*20/26 &&mouseY<height*21/26) {
-        newR++;
-        if (newR==3) {
-          newR=0;
-        }
-      }
-      if (mouseY>height*21/26 &&mouseY<height*22/26) {
-        seni++;
-        if (seni==3) {
-          seni=0;
-        }
-      }
-      if (mouseY>height*22/26 &&mouseY<height*23/26) {
-        vallR++;
-        if (vallR==3) {
-          vallR=0;
-        }
-      }
-      if (mouseY>height*23/26 &&mouseY<height*24/26) {
-        pint++;
-        if (pint==3) {
-          pint=0;
-        }
-      }
-      if (mouseY>height*24/26 &&mouseY<height*25/26) {
-        pant++;
-        if (pant==3) {
-          pant=0;
-        }
-      }
-      if (mouseY>height*25/26 &&mouseY<height*26/26) {
-        fres++;
-        if (fres==3) {
-          fres=0;
-        }
-      }
-    }
-  }
-}
+

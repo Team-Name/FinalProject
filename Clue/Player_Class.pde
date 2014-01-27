@@ -4,80 +4,69 @@ class Player {
   String lastRoom;
   PImage picture;
   Card[] cards;
-  boolean turn;
   String teacher;
+  Card[] suggestion;
+  Card[] accusation;
+  //boolean turn;
 
   Player(PVector startLoc, Card[] myCards, String myTeacher) {
     loc = startLoc;
     movesLeft = 0;
     teacher = myTeacher;
     cards = myCards;
-    turn = false;
-    //initialize image according to teacher
+    //turn = false;
+    if (teacher.equals("Ms. Gerstein")) { 
+      picture = gpic;
+    }
+    else if (teacher.equals("Mrs. Kipp")) { 
+      picture = kpic;
+    }
+    else if (teacher.equals("Mrs. Monroy")) { 
+      picture = monpic;
+    }
+    else if (teacher.equals("Mr. Moskowitz")) { 
+      picture = mospic;
+    }
+    else if (teacher.equals("Mr. Sanservino")) { 
+      picture = spic;
+    }
+    else { 
+      picture = vpic;
+    }
   }
 
+
   void display() {
-    //display picture at loc
+    picture.resize(24, 24);
+    image(picture, b.gridToCode(loc).x, b.gridToCode(loc).y);
   }
 
   //0 = up, 1 = right, 2 = down, 3 = left
   void move() {
-    if (b.inRoom(loc).equals("Office")) {
-      Card[] accusation; 
-      //display screen to make accusation
-      if (accusation != null) {
-        stage++;
-        if (checkAccusation(accusation)) {
-          won = true;
-        }
-      }
+    if (b.inRoom(loc) != null && b.inRoom(loc).equals("Office")) {
+      accusation = new Card[3]; 
+      background(0);
+      accusationScreen = true;
+      accuseStage = 0;
     }
     else if (movesLeft == 0) {
       movesLeft = int(random(1, 7)) + int(random(1, 7));
     }
-    else () {
-      //display movesLeft
-      if (keyPressed && keyCode >= 37 && keyCode <= 40) { //if this isn't working have to make it keyReleased
-        int direction = keyCode;
-        if (board.canMove(direction)) {
-          if (direction == LEFT) {
-            loc.x--;
-          }
-          else if (direction == RIGHT) {
-            loc.x++;
-          }
-          else if (direction == UP) {
-            loc.y--;
-          }
-          else {
-            loc.y++;
-          }
-          movesLeft--;
-        }
-      }
+    else {
+      textSize(80);
+      textAlign(LEFT, UP);
+      fill(255);
+      text("Moves left: " + movesLeft, 10, 730);
+
       if (b.inRoom(loc) != null && !b.inRoom(loc).equals(lastRoom)) {
         lastRoom = b.inRoom(loc);
-        Card[] suggestion;
-        if (suggestion != null) {
-          Card revealed = reveal(suggestion);
-          //display card for a certain amount as dictated by a timer (and who revealed it)
-          movesLeft = 0;
-          turn = false;
-        }
-      }
-      if (movesLeft == 0) {
-        turn = false;
+        suggestion = new Card[3];
+        suggestion[0] = new Card(1, b.inRoom(loc));
+        background(0);
+        suggestionScreen = true;
+        suggestStage = 0;
       }
     }
-  }
-
-  Card reveal(Cards[] suggestion) {
-    for (ComputerPlayer cplayer : cp) { //so player 1 is left, player 2 is top, player 3 is right, human player is bottom
-      if (cplayer.checkCards(suggesion) != null) {
-        return match;
-      }
-    }
-    return null;
   }
 
   Card checkCards(Card[] suggestion) {
@@ -89,9 +78,19 @@ class Player {
     shuffleCards(cardsRand);
     for (Card x : suggestionRand) {
       for (Card y : cardsRand) { 
-        if (x.checkEqual(y) == true) {
+        if (x.equal(y) == true) {
           return y;
         }
+      }
+    }
+    return null;
+  }
+
+  Card reveal(Card[] suggestion) {
+    for (ComputerPlayer cplayer : cp) { //so player 1 is left, player 2 is top, player 3 is right, human player is bottom
+      Card match = cplayer.checkCards(suggestion); 
+      if (match != null) {
+        return match;
       }
     }
     return null;
@@ -123,72 +122,107 @@ class Player {
 }
 
 class ComputerPlayer extends Player {
-  Card[] possibleCards;
+  ArrayList<Card> possibleSuspects;
+  ArrayList<Card> possibleRooms;
+  ArrayList<Card> possibleWeapons;
   int index; 
 
   ComputerPlayer(PVector startLoc, Card[] myCards, String myTeacher, int myIndex) {
-    super(startLoc, myCards, myPicture);
+    super(startLoc, myCards, myTeacher);
     index = myIndex;
-    setUpCardArray(Card[] possibleCards);
+    possibleSuspects = c.setUpTeachers();
+    possibleRooms = c.setUpRooms();
+    possibleWeapons = c.setUpWeapons();
     for (Card card : myCards) {
       sawCard(card);
     }
   }
 
   void move () {
-    if (b.inRoom(loc).equals("Office")) {
+    if (b.inRoom(loc) != null && b.inRoom(loc).equals("Office")) {
       stage++;
     }
-    else if (movesLeft == 0) {
+    else {
       movesLeft = int(random(1, 7)) + int(random(1, 7));
-    }
-    else () {
-      //slow this down so player see what happens and how computer moves
-      int direction = getDirection();
-      if (board.canMove(direction)) {
-        if (direction == LEFT) {
-          loc.x--;
-        }
-        else if (direction == RIGHT) {
-          loc.x++;
-        }
-        else if (direction == UP) {
-          loc.y--;
+      int stuck = 0;
+      while (movesLeft > 0) {
+        int direction = getDirection();
+        if (b.canMove(loc, direction)) {
+          if (direction == LEFT) {
+            loc.x--;
+          }
+          else if (direction == RIGHT) {
+            loc.x++;
+          }
+          else if (direction == UP) {
+            loc.y--;
+          }
+          else {
+            loc.y++;
+          }
+          movesLeft--;
+          stuck = 0;
         }
         else {
-          loc.y++;
+          stuck++;
         }
-        movesLeft--;
-      }
-      if (b.inRoom(loc) != null && !b.inRoom(loc).equals(lastRoom)) {
-        Card[] suggestion = getSuggestion;
-        //stop here for a few seconds, show suggestion on screen
-        sawCard(reveal(suggestion)); 
-        turn = false;
-      }
-      if (movesLeft == 0) {
-        turn = false;
+        if (stuck >= 3) {
+          if (direction == LEFT) {
+            loc.y++;
+          }
+          else if (direction == RIGHT) {
+            loc.y--;
+          }
+          else if (direction == UP) {
+            loc.x++;
+          }
+          else {
+            loc.x--;
+          }
+          stuck = 0;
+        }
+        if (stuck >= 5) {
+          if (direction == LEFT) {
+            loc.y--;
+          }
+          else if (direction == RIGHT) {
+            loc.y++;
+          }
+          else if (direction == UP) {
+            loc.x--;
+          }
+          else {
+            loc.x++;
+          }
+          stuck = 0;
+        }
+        if (b.inRoom(loc) != null && !b.inRoom(loc).equals(lastRoom)) {
+          Card[] suggestion = getSuggestion();
+          //stop here for a few seconds, show suggestion on screen
+          sawCard(reveal(suggestion)); 
+          movesLeft = 0;
+        }
       }
     }
   }
 
-  Card reveal(Cards[] suggestion) {
+  Card reveal(Card[] suggestion) {
     Card match;
     for (int i = index+1; i<3; i++) {
-      match = cplayer.checkCards(suggesion);
+      match = cp[i].checkCards(suggestion);
       if (match != null) { //need super here?
         //display message saying that computer player showed computer player a card
         return match;
       }
     }
-    match = cplayer.checkCards(suggesion);
+    match = p.checkCards(suggestion);
     if (match != null) {
       //display message saying that player showed computer player match
       return match;
     }
     for (int i = 0; i<index; i++) {
-      match = cplayer.checkCards(suggesion);
-      if (cplayer.checkCards(suggesion) != null) {
+      match = cp[i].checkCards(suggestion);
+      if (match != null) {
         //display message saying that computer player showed computer player a card
         return match;
       }
@@ -197,37 +231,38 @@ class ComputerPlayer extends Player {
   }
 
   int getDirection() {
-    String[] rooms = nearestRooms(PVector loc, int dir);
+    String[] pRooms = b.nearestRooms(loc);
     if (accuse()) {
       return b.directionTo(loc, "Office");
     }
-    else if (possibleCards[1].size() == 1) {
-      if (!rooms[0].equals(lastRoom)) {
-        return b.directionTo(loc, rooms[0]);
+    else if (possibleRooms.size() == 1) {
+      if (!pRooms[0].equals(lastRoom)) {
+        return b.directionTo(loc, pRooms[0]);
       }
-      return b.directionTo(loc, rooms[1]);
+      return b.directionTo(loc, pRooms[1]);
     }
     else {
-      for (String r : rooms) {
-        for (Card c : possibleCards[1]) {
-          if (r.equals(c.detail) {
+      for (String r : pRooms) {
+        for (Card c : possibleRooms) {
+          if (r.equals(c.detail)) {
             return b.directionTo(loc, r);
           }
         }
       }
     }
+    return 0;
   }
 
   Card[] getSuggestion() {
     Card[] s = new Card[3];
-    s[0] = possibleCards[0].get(int(random(possibleCards[0].size())));
-    s[1] = possibleCards[1].get(int(random(possibleCards[1].size())));
-    s[2] = possibleCards[2].get(int(random(possibleCards[2].size())));
+    s[0] = possibleSuspects.get(int(random(possibleSuspects.size())));
+    s[1] = possibleRooms.get(int(random(possibleRooms.size())));
+    s[2] = possibleWeapons.get(int(random(possibleWeapons.size())));
     return s;
   }
 
   boolean accuse() {
-    if (possibleCards[0].size() == 1 && possibleCards[1].size() == 1 && possibleCards[2].size() == 1) {
+    if (possibleSuspects.size() == 1 && possibleRooms.size() == 1 && possibleWeapons.size() == 1) {
       return true;
     }
     return false;
@@ -235,15 +270,31 @@ class ComputerPlayer extends Player {
 
   Card[] getAccusation() {
     Card[] a = {
-      possibleCards[0].get(0), possibleCards[1].get(0), possibleCards[2].get(0)
-    };
-    return a;
+      possibleSuspects.get(0), possibleRooms.get(0), possibleWeapons.get(0)
+      };
+      return a;
   }
 
   void sawCard(Card saw) {
-    for (int i = 0; i < possibleCards[saw.type].size(); i++) {
-      if (possibleCards[0].get(i).equal(saw)) {
-        possibleCards[0].remove(i);
+    if (saw.type == 0) {
+      for (int i = 0; i < possibleSuspects.size(); i++) {
+        if (possibleSuspects.get(i).equal(saw)) {
+          possibleSuspects.remove(i);
+        }
+      }
+    }
+    else if (saw.type == 1) {
+      for (int i = 0; i < possibleRooms.size(); i++) {
+        if (possibleRooms.get(i).equal(saw)) {
+          possibleRooms.remove(i);
+        }
+      }
+    }
+    else {
+      for (int i = 0; i < possibleWeapons.size(); i++) {
+        if (possibleWeapons.get(i).equal(saw)) {
+          possibleWeapons.remove(i);
+        }
       }
     }
   }

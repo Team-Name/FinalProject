@@ -35,7 +35,7 @@ class CardPile {
   }
 
   Card getRandomCard() {
-    if (cards.size>0) {
+    if (cards.size()>0) {
       int i = int(random(cards.size()-1));
       Card c = cards.get(i);
       cards.remove(i);
@@ -67,22 +67,24 @@ class CardPile {
     cards.add(new Card(2, "Deafening Bell"));
     cards.add(new Card(2, "Blinky the Robot"));
     cards.add(new Card(2, "Exploding Printer Jam"));
-    cards.add(new Card(2, "Null Pointed Exception"));
+    cards.add(new Card(2, "Null Pointer Exception"));
     cards.add(new Card(2, "Supervolcano"));
     cards.add(new Card(2, "Answer That Wasn't In The PDF"));
   }
 
-  void setUpCardArray(Card[] allCards) {
-    allCards = new Card[3];
+  ArrayList<Card> setUpTeachers() {
     ArrayList<Card> teacherCards = new ArrayList<Card>();
-    ArrayList<Card> roomCards = new ArrayList<Card>();
-    ArrayList<Card> weaponCards = new ArrayList<Card>();  
     teacherCards.add(new Card(0, "Ms. Gerstein"));
     teacherCards.add(new Card(0, "Mr. Sanservino"));
     teacherCards.add(new Card(0, "Mr. Moskowitz"));
     teacherCards.add(new Card(0, "Mrs. Kipp"));
     teacherCards.add(new Card(0, "Mrs. Monroy"));
     teacherCards.add(new Card(0, "Mrs. Valley"));
+    return teacherCards;
+  }
+  
+  ArrayList<Card> setUpRooms() {
+    ArrayList<Card> roomCards = new ArrayList<Card>();
     roomCards.add(new Card(1, "Auditorium"));
     roomCards.add(new Card(1, "Fitness Center"));
     roomCards.add(new Card(1, "MMC"));
@@ -92,6 +94,11 @@ class CardPile {
     roomCards.add(new Card(1, "Mrs. Pinto's Room"));
     roomCards.add(new Card(1, "Mr. Pantaleo's Room"));
     roomCards.add(new Card(1, "Freshman Tech Room"));
+    return roomCards;
+  }
+  
+  ArrayList<Card> setUpWeapons() {
+    ArrayList<Card> weaponCards = new ArrayList<Card>();
     weaponCards.add(new Card(2, "ID"));
     weaponCards.add(new Card(2, "Whirligig"));
     weaponCards.add(new Card(2, "Deafening Bell"));
@@ -100,9 +107,7 @@ class CardPile {
     weaponCards.add(new Card(2, "Null Pointed Exception"));
     weaponCards.add(new Card(2, "Supervolcano"));
     weaponCards.add(new Card(2, "Answer That Wasn't In The PDF"));
-    allCards[0] = teacherCards;
-    allCards[1] = roomCards;
-    allCards[2] = weaponCards;
+    return weaponCards;
   }
 }
 

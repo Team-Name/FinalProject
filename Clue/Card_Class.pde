@@ -14,10 +14,6 @@ class Card {
     }
     return false;
   }
-  
-  void display(PVector loc) {
-    //display card
-  }
 }
 
 
