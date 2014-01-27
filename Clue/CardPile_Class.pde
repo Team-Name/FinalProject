@@ -6,6 +6,7 @@ class CardPile {
     setUpCardPile();
   }
 
+  //returns a murder and removes cards from cardpile
   Card[] getMurder() {
     boolean taken0, taken1, taken2;
     taken0=false;
@@ -34,6 +35,7 @@ class CardPile {
     return murder;
   }
 
+  //returns random card and removes it from pile
   Card getRandomCard() {
     if (cards.size()>0) {
       int i = int(random(cards.size()-1));
@@ -46,6 +48,7 @@ class CardPile {
     }
   }
 
+  //sets up card pile
   void setUpCardPile() {
     cards.add(new Card(0, "Ms. Gerstein"));
     cards.add(new Card(0, "Mr. Sanservino"));
@@ -72,6 +75,7 @@ class CardPile {
     cards.add(new Card(2, "Answer That Wasn't In The PDF"));
   }
 
+  //sets up teachers
   ArrayList<Card> setUpTeachers() {
     ArrayList<Card> teacherCards = new ArrayList<Card>();
     teacherCards.add(new Card(0, "Ms. Gerstein"));
@@ -82,7 +86,8 @@ class CardPile {
     teacherCards.add(new Card(0, "Mrs. Valley"));
     return teacherCards;
   }
-  
+
+  //sets up rooms
   ArrayList<Card> setUpRooms() {
     ArrayList<Card> roomCards = new ArrayList<Card>();
     roomCards.add(new Card(1, "Auditorium"));
@@ -96,7 +101,8 @@ class CardPile {
     roomCards.add(new Card(1, "Freshman Tech Room"));
     return roomCards;
   }
-  
+
+  //sets up weapons
   ArrayList<Card> setUpWeapons() {
     ArrayList<Card> weaponCards = new ArrayList<Card>();
     weaponCards.add(new Card(2, "ID"));

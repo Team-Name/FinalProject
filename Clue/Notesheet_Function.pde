@@ -1,3 +1,4 @@
+//displays notesheet on screen
 void notesheet() {
   textAlign(CENTER, CENTER);
   colorMode(RGB, 255, 255, 255);

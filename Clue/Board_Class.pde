@@ -11,6 +11,7 @@ class Board {
     setUpRooms();
   }
 
+  //returns if player can move at loc in the direction dir
   boolean canMove(PVector loc, int dir) {
     if (dir == LEFT) {
       for (PVector p : notLeft) {
@@ -43,6 +44,7 @@ class Board {
     return true;
   }
 
+  //returns String room if player is in a room otherwise null
   String inRoom(PVector loc) {
     for (int i = 0; i < rooms.length; i++) {
       if (roomLocs[i].equals(loc)) {
@@ -79,6 +81,7 @@ class Board {
     }
   }
 
+  //returns an array of the nearest rooms
   String[] nearestRooms(PVector loc) {
     String[] nearest = new String[9];
     ArrayList<String> allRooms = new ArrayList<String>();
@@ -103,10 +106,12 @@ class Board {
     return nearest;
   }
 
+  //converts a grid location to an actual location
   PVector gridToCode(PVector loc) {
     return new PVector(loc.x*24.9+42, loc.y*24+33);
   }
 
+  //sets up the rooms
   void setUpRooms() {
     rooms = new String[10];
     roomLocs = new PVector[10];
@@ -132,6 +137,7 @@ class Board {
     roomLocs[9] = new PVector(9, 11);
   }
   
+  //locations and directions where one cannot move
   void makeNots() {
     notLeft = new ArrayList<PVector>();
     notLeft.add(new PVector(0, 5));

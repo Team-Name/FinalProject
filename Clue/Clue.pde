@@ -2,6 +2,7 @@
 import ddf.minim.*;
 Minim minim;
 AudioPlayer music;
+//setting up variables
 int stage, suggestStage, accuseStage;
 Start st;
 boolean inst, turnP, won, showCards, suggestionScreen, accusationScreen, showCard;
@@ -21,7 +22,7 @@ Card revealed;
 End e;
 
 void setup() {
-  //settings
+  //initiating and setting everything
   size(930, 750);
   rectMode(CENTER);
   colorMode(HSB, 360, 100, 100);
@@ -52,7 +53,8 @@ void setup() {
 }
 
 void draw() {
-  if (stage == 0) { //start screen
+  //displays startscreen
+  if (stage == 0) {
     if (inst) {
       st.showRules();
     }
@@ -60,6 +62,7 @@ void draw() {
       st.display();
     }
   }
+  //show starting cards if true
   else if (showCards) {
     showCards = true;
     background(0);
@@ -75,6 +78,7 @@ void draw() {
       text(c.detail, 10, pos);
     }
   }
+  //shows suggestion screen if true
   else if (suggestionScreen) {
     if (suggestStage == 0) {
       background(0);
@@ -100,6 +104,7 @@ void draw() {
       showCard = true;
     }
   }
+  //shows one card revealed from suggestion if true
   else if (showCard) {
     background(0);
     textSize(40);
@@ -108,6 +113,7 @@ void draw() {
     text("Card Revealed:", 10, 120);
     text(revealed.detail, 10, 170);
   }
+  //shows accusation screen if true
   else if (accusationScreen) {
     if (accuseStage == 0) {
       background(0);
@@ -141,7 +147,8 @@ void draw() {
       accusationScreen = false;
     }
   }
-  else if (stage == 1) { //choosing a teacher to play with
+  //choosing a teacher to play with
+  else if (stage == 1) { 
     ArrayList<String> teachers = new ArrayList<String>();
     background(0);
     textSize(80);
@@ -174,6 +181,7 @@ void draw() {
         teachers.add("Mrs. Valley");
       }
     }
+    //once teacher is chosen, cards are distributed, teachers are distributed, variables initialized
     if (teachers.size() != 0) {
       murder = c.getMurder();
       int i = 0;
@@ -211,32 +219,36 @@ void draw() {
       showCards = true;
     }
   }
-  else if (stage == 2) { //actual game
+  //actual game
+  else if (stage == 2) {
     //display the picture of the board and sidebar and teacher pieces on board
     background(0);
     imageMode(CORNER);
     image(board, 0, 0);
     p.display();
     notesheet();
+    //update players
     for (ComputerPlayer i : cp) {
       i.display();
     }
     if (turnP) {
       p.move();
     }
-    else {//computer players move (need a timer otherwise this would be too fast)
+    else {
       for (ComputerPlayer i : cp) {
         i.move();
       }
       turnP = true;
     }
   }
-  else { //end game
+  //end screen
+  else {
     e.display();
   }
 }
 
 void keyReleased() {
+  //player's moves
   if (turnP && keyCode >= 37 && keyCode <= 40) {
     int direction = keyCode;
     if (b.canMove(p.loc, direction)) {
@@ -261,6 +273,7 @@ void keyReleased() {
 }
 
 void mouseClicked() {
+  //clicking for suggestion screen
   if (suggestionScreen) {
     if (suggestStage == 0) {
       if (mouseY > 85 && mouseY < 123) {
@@ -323,7 +336,8 @@ void mouseClicked() {
       }
     }
   }
-  if (accusationScreen) {
+  //clicking for accusation screen
+  else if (accusationScreen) {
     if (accuseStage == 0) {
       if (mouseY > 85 && mouseY < 123) {
         p.accusation[1] = new Card(0, "Ms. Gerstein");
@@ -423,25 +437,26 @@ void mouseClicked() {
       }
     }
   }
-  if (stage==3) {
+  //clicking for restart
+  else if (stage==3) {
     e.restart();
   }
-}
-
-
-void mousePressed() {
-  if (stage == 0) {
+  //clicking for start screen
+  else if (stage == 0) {
     st.changeStage(); 
     st.rules();
   }
+  //clicking for showing starting cards
   else if (stage == 1 && showCards && mouseX < 666) {
     stage++;
     showCards = false;
   }
+  //clicking for showing cards revealed after suggestion
   else if (stage == 2 && showCard && mouseX < 666) {
     showCard = false;
   }
-  if (stage>=1) {
+  //clicking for notesheet
+  else if (stage>=1) {
     if (mouseX>=666) {
       if (mouseY>height*1/26 &&mouseY<height*2/26) {
         gers++;

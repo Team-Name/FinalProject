@@ -7,14 +7,13 @@ class Player {
   String teacher;
   Card[] suggestion;
   Card[] accusation;
-  //boolean turn;
 
   Player(PVector startLoc, Card[] myCards, String myTeacher) {
     loc = startLoc;
     movesLeft = 0;
     teacher = myTeacher;
     cards = myCards;
-    //turn = false;
+    //sets a picture for the player
     if (teacher.equals("Ms. Gerstein")) { 
       picture = gpic;
     }
@@ -35,29 +34,32 @@ class Player {
     }
   }
 
-
+  //displays the player token
   void display() {
     picture.resize(24, 24);
     image(picture, b.gridToCode(loc).x, b.gridToCode(loc).y);
   }
 
   //0 = up, 1 = right, 2 = down, 3 = left
+  //moves the player
   void move() {
+    //if in office, accuse
     if (b.inRoom(loc) != null && b.inRoom(loc).equals("Office")) {
       accusation = new Card[3]; 
       background(0);
       accusationScreen = true;
       accuseStage = 0;
     }
+    //if starting the move, roll random number
     else if (movesLeft == 0) {
       movesLeft = int(random(1, 7)) + int(random(1, 7));
     }
+    //if moving, check if in room and display movesleft
     else {
       textSize(80);
       textAlign(LEFT, UP);
       fill(255);
       text("Moves left: " + movesLeft, 10, 730);
-
       if (b.inRoom(loc) != null && !b.inRoom(loc).equals(lastRoom)) {
         lastRoom = b.inRoom(loc);
         suggestion = new Card[3];
@@ -69,6 +71,7 @@ class Player {
     }
   }
 
+  //checks if player has any of the cards in suggestion
   Card checkCards(Card[] suggestion) {
     Card[] suggestionRand = new Card[suggestion.length];
     arrayCopy(suggestion, suggestionRand);
@@ -86,8 +89,10 @@ class Player {
     return null;
   }
 
+  //reveals one card or no cards to show for suggestion
   Card reveal(Card[] suggestion) {
-    for (ComputerPlayer cplayer : cp) { //so player 1 is left, player 2 is top, player 3 is right, human player is bottom
+    for (ComputerPlayer cplayer : cp) { 
+      //order is counterclockwise so player 1 is left, player 2 is top, player 3 is right, human player is bottom
       Card match = cplayer.checkCards(suggestion); 
       if (match != null) {
         return match;
@@ -96,6 +101,7 @@ class Player {
     return null;
   }
 
+  //checks if accusation is right
   boolean checkAccusation(Card[] accusation) {
     int num = 0; 
     for (Card c : accusation) {
@@ -111,6 +117,7 @@ class Player {
     return false;
   }
 
+  //shuffles the card order
   void shuffleCards(Card[] cards) {
     for (int i = cards.length - 1; i > 0; i--) {
       int index = int(random(i + 1));
@@ -138,10 +145,13 @@ class ComputerPlayer extends Player {
     }
   }
 
+  //moves the computer player
   void move () {
+    //if in accusation room, computer won
     if (b.inRoom(loc) != null && b.inRoom(loc).equals("Office")) {
       stage++;
     }
+    //moves according to what cards it has, and if it gets stuck, it moves differently
     else {
       movesLeft = int(random(1, 7)) + int(random(1, 7));
       int stuck = 0;
@@ -198,7 +208,7 @@ class ComputerPlayer extends Player {
         }
         if (b.inRoom(loc) != null && !b.inRoom(loc).equals(lastRoom)) {
           Card[] suggestion = getSuggestion();
-          //stop here for a few seconds, show suggestion on screen
+          suggestion[1] = b.inRoom(loc);
           sawCard(reveal(suggestion)); 
           movesLeft = 0;
         }
@@ -206,30 +216,29 @@ class ComputerPlayer extends Player {
     }
   }
 
+  //different reveal function because the order is counterclockwise
   Card reveal(Card[] suggestion) {
     Card match;
     for (int i = index+1; i<3; i++) {
       match = cp[i].checkCards(suggestion);
-      if (match != null) { //need super here?
-        //display message saying that computer player showed computer player a card
+      if (match != null) {
         return match;
       }
     }
     match = p.checkCards(suggestion);
     if (match != null) {
-      //display message saying that player showed computer player match
       return match;
     }
     for (int i = 0; i<index; i++) {
       match = cp[i].checkCards(suggestion);
       if (match != null) {
-        //display message saying that computer player showed computer player a card
         return match;
       }
     }
     return null;
   }
 
+  //returns direction for player to move in
   int getDirection() {
     String[] pRooms = b.nearestRooms(loc);
     if (accuse()) {
@@ -253,6 +262,7 @@ class ComputerPlayer extends Player {
     return 0;
   }
 
+  //returns the computer's suggestion randomly from things it doesn't know
   Card[] getSuggestion() {
     Card[] s = new Card[3];
     s[0] = possibleSuspects.get(int(random(possibleSuspects.size())));
@@ -261,6 +271,7 @@ class ComputerPlayer extends Player {
     return s;
   }
 
+  //returns if computer can accuse
   boolean accuse() {
     if (possibleSuspects.size() == 1 && possibleRooms.size() == 1 && possibleWeapons.size() == 1) {
       return true;
@@ -268,6 +279,7 @@ class ComputerPlayer extends Player {
     return false;
   }
 
+  //gets the player's accusation
   Card[] getAccusation() {
     Card[] a = {
       possibleSuspects.get(0), possibleRooms.get(0), possibleWeapons.get(0)
@@ -275,6 +287,7 @@ class ComputerPlayer extends Player {
       return a;
   }
 
+  //adds card to cards seen by computer
   void sawCard(Card saw) {
     if (saw.type == 0) {
       for (int i = 0; i < possibleSuspects.size(); i++) {

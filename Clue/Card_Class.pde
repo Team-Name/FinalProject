@@ -8,6 +8,7 @@ class Card {
     detail = myDetail;
   }
   
+  //returns if detail of card equals detail of another
   boolean equal(Card other) {
     if (detail.equals(other.detail)) {
       return true;
