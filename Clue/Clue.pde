@@ -43,7 +43,7 @@ void setup() {
   b = new Board();
   e = new End();
   teacherCards = c.setUpTeachers();
-  board = loadImage("clue board.jpg");
+  board = loadImage("board.png");
   gpic = loadImage("Gerstein.png");
   kpic = loadImage("Kipp.png");
   monpic = loadImage("Monroy.png");

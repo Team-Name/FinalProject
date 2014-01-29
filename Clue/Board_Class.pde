@@ -115,16 +115,16 @@ class Board {
   void setUpRooms() {
     rooms = new String[10];
     roomLocs = new PVector[10];
-    rooms[0] = "Mrs. Pinto's Room";
-    rooms[1] = "Fitness Center";
-    rooms[2] = "Freshman Tech Room";
-    rooms[3] = "Senior Lounge";
-    rooms[4] = "New Room";
-    rooms[5] = "MMC";
-    rooms[6] = "Mr. Pantaleo's Room";
-    rooms[7] = "Auditorium";
-    rooms[8] = "Mrs. Valley's Room";
-    rooms[9] = "Office";
+    rooms[0] = "Mrs. Pinto's Room"; // locations: topLeftcorner: 24,24; bottomLeftcorner: 24,159; topRightcorner: 153,24; bottomRightcorner: 153,136; middleBottomcorner: 99,136; middleBottomcorner2: 100,159;
+    rooms[1] = "Fitness Center"; // locations: topLeftcorner: 187,24; bottomLeftcorner: 188,138; topRightcorner: ; bottomRightcorner: ;
+    rooms[2] = "Freshman Tech Room"; // 
+    rooms[3] = "Senior Lounge"; // 
+    rooms[4] = "New Room"; // 
+    rooms[5] = "MMC"; // 
+    rooms[6] = "Mr. Pantaleo's Room"; // 
+    rooms[7] = "Auditorium"; // 
+    rooms[8] = "Mrs. Valley's Room"; // 
+    rooms[9] = "Office"; // 
     roomLocs[0] = new PVector(6, 3);
     roomLocs[1] = new PVector(12, 6);
     roomLocs[2] = new PVector(17, 5);
